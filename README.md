@@ -4,7 +4,7 @@
 This project is a simple chatbot built using Node.js and the OpenAI API. The goal is to show you how to create a basic chatbot that can answer questions. This guide will take you through every step of the process, even if you have no prior experience.
 
 ## Table of Contents
-- [What You Will Learn](#what-you-will-learn)
+- [Project Overview](#project-overvieew)
 - [Prerequisites](#prerequisites)
 - [Technologies Used](#technologies-used)
 - [Setup Instructions](#setup-instructions)
