@@ -91,8 +91,9 @@ Before you start, make sure you have the following:
 ### Step 7: Add Chatbot Code
 1. Open the `chatbot.js` file in your text editor and add the following code:
 
-    ```bash
-    // Load required modules
+```bash
+    
+// Load required modules
 const express = require("express");
 const OpenAI = require("openai");
 require("dotenv").config(); // Load environment variables from .env file
@@ -108,8 +109,7 @@ const openai = new OpenAI({
 // Define the endpoint for generating AI responses
 app.post("/getResponse", async (req, res) => {
     const userPrompt = req.body.userPrompt; // Extract user prompt from request body
-
-    // Input validation
+// Input validation
     if (!userPrompt || typeof userPrompt !== "string") {
         return res.status(400).json({ error: "Invalid input." });
     }
@@ -139,8 +139,8 @@ const PORT = process.env.PORT || 3000; // Use the port from the environment or d
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`); // Log server start
 });
+```
 
-    ```
 
 ### Step 8: Create a .env File
 1. In the `openai-chatbot` folder, create a new file named `.env`. 
