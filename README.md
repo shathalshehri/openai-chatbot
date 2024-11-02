@@ -4,7 +4,7 @@
 This project is a simple chatbot built using Node.js and the OpenAI API. The goal is to show you how to create a basic chatbot that can answer questions. This guide will take you through every step of the process, even if you have no prior experience.
 
 ## Table of Contents
-- [Project Overview](#project-overvieew)
+- [Project Overview](#project-overview)
 - [Prerequisites](#prerequisites)
 - [Technologies Used](#technologies-used)
 - [Setup Instructions](#setup-instructions)
@@ -92,41 +92,54 @@ Before you start, make sure you have the following:
 1. Open the `chatbot.js` file in your text editor and add the following code:
 
     ```javascript
-    const express = require('express');
-    const dotenv = require('dotenv');
-    const axios = require('axios');
+    // Load required modules
+const express = require("express");
+const OpenAI = require("openai");
+require("dotenv").config(); // Load environment variables from .env file
 
-    dotenv.config();
+const app = express();
+app.use(express.json()); // Parse JSON bodies
 
-    const app = express();
-    const port = 3000;
+// Initialize the OpenAI API client with your API key from .env file
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
 
-    app.use(express.json());
+// Define the endpoint for generating AI responses
+app.post("/getResponse", async (req, res) => {
+    const userPrompt = req.body.userPrompt; // Extract user prompt from request body
 
-    app.post('/getResponse', async (req, res) => {
-        const userPrompt = req.body.userPrompt;
+    // Input validation
+    if (!userPrompt || typeof userPrompt !== "string") {
+        return res.status(400).json({ error: "Invalid input." });
+    }
 
-        try {
-            const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-                model: 'gpt-3.5-turbo',
-                messages: [{ role: 'user', content: userPrompt }],
-            }, {
-                headers: {
-                    'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-                    'Content-Type': 'application/json'
-                }
-            });
+    console.log(`Me: ${userPrompt}`); // Log user prompt for debugging
 
-            res.json({ response: response.data.choices[0].message.content });
-        } catch (error) {
-            console.error(error);
-            res.status(500).send('Error generating response');
-        }
-    });
+    try {
+        // Call OpenAI API to generate a response
+        const response = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: [{ role: "user", content: userPrompt }],
+            max_tokens: 100, // Adjust the token limit as needed
+        });
 
-    app.listen(port, () => {
-        console.log(`Server started on port ${port}`);
-    });
+        // Log and send the AI's response
+        const aiResponse = response.choices[0].message.content;
+        console.log(`AI Response: ${aiResponse}`);
+        res.json({ response: aiResponse }); // Send response back to the client
+    } catch (error) {
+        console.error("Error:", error); // Log any errors
+        res.status(500).json({ error: "An error occurred while processing your request." });
+    }
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000; // Use the port from the environment or default to 3000
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`); // Log server start
+});
+
     ```
 
 ### Step 8: Create a .env File
@@ -181,4 +194,5 @@ Use Postman to send different questions to the chatbot. You can try asking quest
 # Important Notes
 - Make sure your OpenAI API key is kept secure and not shared publicly.
 - This chatbot is a basic implementation; consider adding error handling and user validation for production use.
+- To stop the server, use `CTRL + C` in your terminal.
 
