@@ -91,7 +91,7 @@ Before you start, make sure you have the following:
 ### Step 7: Add Chatbot Code
 1. Open the `chatbot.js` file in your text editor and add the following code:
 
-```bash
+```javascript 
     
 // Load required modules
 const express = require("express");
