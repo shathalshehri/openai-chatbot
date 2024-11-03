@@ -180,11 +180,18 @@ app.listen(PORT, () => {
     ```
 4. Click **Send** to receive a response from the chatbot.
 
+
+
 ### Step 11: Testing the Chatbot
 Use Postman to send different questions to the chatbot. You can try asking questions like:
 - "What is OpenAI?"
 - "Can you summarize the history of AI?"
 - "Tell me a joke."
+
+![Terminal Screenshot](https://github.com/shathalshehri/openai-chatbot/blob/main/Screenshot-Terminal.png)
+
+Here's a screenshot of the request being sent in Postman:
+![Postman Screenshot](https://github.com/shathalshehri/openai-chatbot/blob/main/screenshot(POSTMAN).png)
 
 ## Future Improvements
 - **User Interface:** Build a web-based UI for easier interaction.
