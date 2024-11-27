@@ -137,5 +137,7 @@ Before starting, ensure you have:
 - Keep your OpenAI API key secure in the `.env` file.
 - Both implementations are basic and can be extended further.
 - Stop the server using `CTRL + C` in the terminal.
-- 'terminal-chatbot.js' code supports Arabic too because the OpenAI GPT-3.5-turbo model natively understands and responds in multiple languages, including Arabic. When you type prompts in Arabic, the chatbot should correctly interpret and reply in Arabic without requiring any special configuration. ![Terminal Chatbot Screenshot](https://github.com/shathalshehri/openai-chatbot/blob/main/Screenshot-Terminal-Ar.png)
+- The `terminal-chatbot.js` code supports multiple languages! For example, it can understand and respond in Arabic. Simply type your prompts in any supported language, and the chatbot will interpret and reply without requiring additional configuration.  
+  As a native Arabic speaker, I’ve included a screenshot demonstrating the chatbot in Arabic:  
+  ![Terminal Chatbot Screenshot](https://github.com/shathalshehri/openai-chatbot/blob/main/Screenshot-Terminal-Ar.png)
 
